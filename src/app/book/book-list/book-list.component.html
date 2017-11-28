@@ -1,0 +1,48 @@
+<div class="container">
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="checkbox">
+      <mat-header-cell *matHeaderCellDef><mat-checkbox (change)="updateSelected($event.checked)"></mat-checkbox></mat-header-cell>
+      <mat-cell *matCellDef="let book">
+        <mat-checkbox [checked]="allChecked" (change)="updateRemoveBookList($event.checked, book)"></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title</mat-header-cell>
+      <mat-cell *matCellDef="let book"><a mat-button (click)="onSelect(book)">{{book.title}}</a></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.author}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="listPrice">
+      <mat-header-cell *matHeaderCellDef> List Price </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.listPrice}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ourPrice">
+      <mat-header-cell *matHeaderCellDef> Our Price </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.ourPrice}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef> Active </mat-header-cell>
+      <mat-cell *matCellDef="let book"> {{book.active}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="operation">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let book"><button mat-button color="warn" (click)="openDialogue(book)">Delete</button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <button mat-raised-button color="warn" (click)="removeSelectedBooks()">Delete Selected</button>
+</div>
+
+

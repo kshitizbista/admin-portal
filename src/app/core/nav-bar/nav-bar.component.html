@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <h3>Admin Portal</h3>
+  <span class="fill-space"></span>
+  <ng-template [ngIf]="isAuthenticated()">
+    <span><a mat-button (click)="onListBook()">View Book List</a></span>
+    <span><a mat-button (click)="onAddBook()">Add a Book</a></span>
+    <span><a mat-button (click)="onLogOut()">Log Out</a></span>
+  </ng-template>
+</mat-toolbar>
+
